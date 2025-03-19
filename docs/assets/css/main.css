@@ -1365,7 +1365,7 @@ input, select, textarea {
 					min-width: auto;
 					height: 2.75rem;
 					line-height: 2.75rem;
-					padding: 0 1.25rem 0 2.45rem;
+					padding: 0 1.00rem 0 1.00rem;
 					text-transform: uppercase;
 					letter-spacing: 0.2rem;
 					font-size: 0.8rem;
