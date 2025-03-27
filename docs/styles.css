@@ -3,8 +3,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: white;
+    background-color: #121212 !important;
+    color: white !important;
 }
 
 /* Navigation Bar */
@@ -37,6 +37,7 @@ body {
     padding: 5rem 2rem;
     text-align: center;
     margin-top: 4rem;
+    background-color: #121212 !important;
 }
 
 h1, h2 {

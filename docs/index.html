@@ -1,47 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CTI Blog</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">CTI Blog</div>
-        <ul class="nav-links">
-            <li><a href="#home">Mess, Managed</a></li>
-            <li><a href="#ttp-mapping">TTPs: MITRE’d and Sorted</a></li>
-            <li><a href="#visualizations">Pretty Pictures of Cyber Doom</a></li>
-            <li><a href="#reports">Hacker Shenanigans, Served Fresh</a></li>
-        </ul>
-    </nav>
-    
-    <!-- Home Section -->
-    <section id="home" class="section">
-        <h1>Oh Great, Another Cybersecurity Blog</h1>
-        <p>Hackers never sleep, but that doesn’t mean you have to lose yours. This platform extracts, analyzes, and visualizes TTPs—so you can focus on more important things, like memes and coffee. Unless you *enjoy* reading endless threat reports, in which case… carry on.</p>
-    </section>
-    
-    <!-- TTP Mapping Section -->
-    <section id="ttp-mapping" class="section">
-        <h2>TTPs: MITRE’d and Sorted</h2>
-        <p>Extracted Tactics, Techniques, and Procedures mapped to the MITRE ATT&CK framework.</p>
-    </section>
-    
-    <!-- Visualizations Section -->
-    <section id="visualizations" class="section">
-        <h2>Pretty Pictures of Cyber Doom</h2>
-        <p>Heat maps, attack timelines, and connection graphs for threat analysis.</p>
-    </section>
-    
-    <!-- Reports Section -->
-    <section id="reports" class="section">
-        <h2>Hacker Shenanigans, Served Fresh</h2>
-        <p>Access dynamically generated threat reports.</p>
-    </section>
-    
-    <script src="script.js"></script>
-</body>
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="description" content="Dropcast is a responsive HTML/CSS/Javascript template for podcasts">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Oh Great, Another Cybersecurity Blog</title>
+      <link rel="stylesheet" href="assets/css/dropcast.css">
+      <link rel="author" href="Amie Chen for Codrops">
+      <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Rufina:400,700|Source+Sans+Pro:200,300,400,600,700" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    </head>
+    <body>
+      <div id="site__bg"></div>
+      <div class="main">
+        <nav>
+          <div class="logo nav__logo">
+            <a href="index.html"><img src="assets/images/logo.svg" alt="logo"/></a>
+          </div>
+          <ul class="nav__list">
+            <li class="nav__item"><a href="#">Episodes</a></li>
+          </ul>
+          <ul class="nav__social">
+            <li><a href="#" class="nav_social__item"><i class="fab fa-google-play"></i></a></li>
+            <li><a href="#" class="nav_social__item"><i class="fab fa-itunes-note"></i></a></li>
+            <li><a href="#" class="nav_social__item"><i class="fas fa-rss-square"></i></a></li>
+          </ul>
+        </nav>
+        <section class="site">
+          <h1 class="site__title site__title--separator">Oh Great, Another Cybersecurity Blog</h1>
+          <p class="site__description">Hackers never sleep, but that doesn’t mean you have to lose yours. This platform extracts, analyzes, and visualizes TTPs—so you can focus on more important things, like memes and coffee. Unless you *enjoy* reading endless threat reports, in which case… carry on.</p>
+        </section>
+        <section class="episodes">
+          <article class="episode">
+            <h2 class="episode__number">01</h2>
+            <div class="episode__media">
+              <a href="detail.html" class="episode__image"></a>
+            </div>
+            <div class="episode__detail">
+              <a href="detail.html" class="episode__title"><h4>Mess, Managed</h4></a>
+              <p class="episode__description">Behind the scenes: How this NLP wizardry works.</p>
+            </div>
+          </article>
+          <article class="episode">
+            <h2 class="episode__number">02</h2>
+            <div class="episode__media">
+              <a href="detail.html" class="episode__image"></a>
+            </div>
+            <div class="episode__detail">
+              <a href="detail.html" class="episode__title"><h4>TTPs: MITRE’d and Sorted</h4></a>
+              <p class="episode__description">Extracted Tactics, Techniques, and Procedures mapped to the MITRE ATT&CK framework.</p>
+            </div>
+          </article>
+          <<article class="episode">
+    <h2 class="episode__number">03</h2>
+    <div class="episode__media cybermap-widget">
+        <iframe width="100%" height="100%" src="https://cybermap.kaspersky.com/en/widget/dynamic/dark" frameborder="0"></iframe>
+    </div>
+    <div class="episode__detail">
+        <a href="https://cybermap.kaspersky.com/" target="_blank" class="episode__title">
+            <h4>Pretty Pictures of Cyber Doom</h4>
+        </a>
+        <p class="episode__description">Heat maps, attack timelines, and connection graphs for threat analysis.</p>
+    </div>
+</article>
+
+          </article>
+          <article class="episode">
+            <h2 class="episode__number">04</h2>
+            <div class="episode__media">
+              <a href="detail.html" class="episode__image"></a>
+            </div>
+            <div class="episode__detail">
+              <a href="detail.html" class="episode__title"><h4>Hacker Shenanigans, Served Fresh</h4></a>
+              <p class="episode__description">Access dynamically generated threat reports.</p>
+            </div>
+          </article>
+        </section>
+      </div>
+      <footer>
+        <p class="footer__content">
+    Just what the internet needed: another blog post! 
+    <span class="footer__template">by &#169; Anjali Panchal.</span></p>
+
+        <div class="logo footer__logo">
+          <a href="https://tympanus.net/codrops/"><img src="assets/images/logo-white.svg" alt="logo"/></a>
+        </div>
+      </footer>
+      <script src="assets/js/dropcast.js"></script>
+    </body>
 </html>
