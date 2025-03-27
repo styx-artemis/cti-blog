@@ -538,6 +538,8 @@ nav {
     border-radius: 4px; } }
 @media only screen and (min-width: 1400px) {
   .right .site__description {
-    column-count: 2; } }
+    column-count: 1; } }
+}
+
 
 /*# sourceMappingURL=dropcast.css.map */
