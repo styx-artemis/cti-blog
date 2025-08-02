@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pretty Pictures of Cyber Doom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css?family=Rufina:400,700|Source+Sans+Pro:200,300,400,600,700" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dropcast.css') }}">
+
+  <!-- Particle JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Source Sans Pro', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    #site__bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+    }
+
+    .nav__list {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav__list li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .site {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      padding: 60px;
+    }
+
+    .left {
+      flex: 1;
+      min-width: 300px;
+      padding-top: 40px;
+    }
+
+    .site__label {
+      color: orange;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .site__title--separator {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-title {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+
+    .dashboard-description {
+      font-size: 1rem;
+      color: #ccc;
+      max-width: 500px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .episode__image {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 1px solid #222;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .right {
+      flex: 2;
+      min-width: 400px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      background: #222;
+      color: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      border: none;
+    }
+
+    .tab:hover {
+      background: #444;
+    }
+
+    .tab.active {
+      background: #007bff;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    iframe {
+      width: 100%;
+      height: 540px;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-content h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    @media screen and (max-width: 900px) {
+      .site {
+        flex-direction: column;
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body class="page--detail">
+  <div id="site__bg"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo nav__logo">
+      <a href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" title="Go to Homepage">
+      </a>
+    </div>
+    <ul class="nav__list">
+      <li class="nav__item"><a href="{{ url_for('index') }}">Home</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Dashboard Layout -->
+  <section class="site">
+    <!-- LEFT PANEL -->
+    <div class="left">
+      <label class="site__label">Overview</label>
+      <h1 class="site__title site__title--separator">Pretty Pictures of Cyber Doom</h1>
+      <div class="dashboard-title">Visual Threat Intelligence Dashboard</div>
+      <div class="dashboard-description">
+        This dashboard presents extracted TTPs, malware, and attack sequences from the uploaded cyber threat report.
+        Use the interactive tabs on the right to explore visual patterns and relationships.
+      </div>
+      <img src="{{ url_for('static', filename='images/photos/original/2.png') }}" alt="Threat Illustration" class="episode__image">
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right">
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab active" data-tab="heatmap">Heatmap</button>
+        <button class="tab" data-tab="matrix">MITRE Matrix</button>
+        <button class="tab" data-tab="graph">Malware-TTP Graph</button>
+        <button class="tab" data-tab="timeline">TTP Timeline</button>
+      </div>
+
+      <!-- TAB CONTENTS -->
+      <div id="heatmap" class="tab-content active">
+        <h2>Attack Frequency by Technique</h2>
+        <iframe src="{{ url_for('static', filename='heatmap.html') }}"></iframe>
+      </div>
+
+      <div id="matrix" class="tab-content">
+        <h2>MITRE ATT&CK Mapping</h2>
+        <iframe src="{{ url_for('static', filename='matrix.html') }}"></iframe>
+      </div>
+
+      <div id="graph" class="tab-content">
+        <h2>Malware ↔ TTP Association Graph</h2>
+        <iframe src="{{ url_for('static', filename='malware_ttp_graph.html') }}"></iframe>
+      </div>
+
+      <div id="timeline" class="tab-content">
+        <h2>Attack Timeline by Tactic</h2>
+        <iframe src="{{ url_for('static', filename='timeline.html') }}"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tab Switching Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.querySelectorAll(".tab");
+      const contents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          contents.forEach(c => c.classList.remove("active"));
+
+          const targetId = tab.getAttribute("data-tab");
+          const target = document.getElementById(targetId);
+          if (target) {
+            tab.classList.add("active");
+            target.classList.add("active");
+          }
+        });
+      });
+    });
+
+    // Load particle background
+    particlesJS.load('site__bg', 'https://cdn.jsdelivr.net/gh/VincentGarreau/particles.js/particles.json');
+  </script>
+
+  <!-- Optional JS -->
+  <script src="{{ url_for('static', filename='js/dropcast.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/player.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Cyber Threat Intelligence Automation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Mess, Managed</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dropcast.css') }}">
+  <link rel="author" href="humans.txt">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rufina:400,700|Source+Sans+Pro:200,300,400,600,700"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+</head>
+
+<body class="page--detail">
+  <nav>
+    <div class="logo nav__logo">
+      <a href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+      </a>
+    </div>
+    <ul class="nav__list">
+      <li class="nav__item"><a href="{{ url_for('index') }}">Home</a></li>
+    </ul>
+    <ul class="nav__social">
+      <li><a href="#" class="nav_social__item"><i class="fab fa-google-play"></i></a></li>
+      <li><a href="#" class="nav_social__item"><i class="fab fa-itunes-note"></i></a></li>
+      <li><a href="#" class="nav_social__item"><i class="fas fa-rss-square"></i></a></li>
+    </ul>
+  </nav>
+
+  <section class="site">
+    <div id="site__bg"></div>
+
+    <div class="left">
+      <label class="site__label">Overview</label>
+      <h1 class="site__title site__title--separator">Mess, Managed</h1>
+    </div>
+
+    <div class="right">
+      <img src="{{ url_for('static', filename='images/photos/original/1.png') }}" alt="Overview Image" class="episode__image">
+
+      <h4 class="site__secondary_title">Tour d'horizon</h4>
+      <p class="site__description"><i>No more manual headaches. Just intelligence that works.</i></p>
+
+      <p class="site__description">
+        <strong>Mess, Managed</strong> is a research-driven Cyber Threat Intelligence (CTI) platform designed to
+        automate and visualize Tactics, Techniques, and Procedures (TTPs) for tracking Advanced Persistent Threats (APTs).
+        Using Natural Language Processing (NLP) and the MITRE ATT&CK framework, the platform extracts insights
+        from unstructured threat intelligence reports, eliminating the need for manual documentation.
+      </p>
+
+      <p class="site__description">
+        ✨ <strong>Why CTI Automation?</strong><br>
+        ✳️ Faster, more accurate threat detection<br>
+        ✳️ Automated TTP mapping to MITRE ATT&CK<br>
+        ✳️ Real-time visualization of cyber threats
+      </p>
+
+      <p class="site__description">
+        📌 <strong>Data Sources & Tech:</strong><br>
+        📝 Public threat intel reports (FireEye, Mandiant)<br>
+        💬 NLP for TTPs<br>
+        🔍 MITRE ATT&CK mapping
+      </p>
+
+      <p class="site__description">
+        ⚡ Want to explore the project’s backend, algorithms, and code implementation? Check out the
+        <a href="https://github.com/styx-artemis/cti-blog.git" target="_blank" rel="noopener">GitHub repository</a>.
+      </p>
+
+      <div class="site__navigation">
+        <a href="{{ url_for('index') }}" class="site__navigation_items site__navigation_items--left">
+          <label>Previous</label>
+          <h4>Home</h4>
+        </a>
+        <a href="{{ url_for('ttps') }}" class="site__navigation_items site__navigation_items--right">
+          <label>Next</label>
+          <h4>TTPs: MITRE’d and Sorted</h4>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script src="{{ url_for('static', filename='js/dropcast.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/player.js') }}"></script>
+</body>
+
+</html>

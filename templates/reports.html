@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Threat Report | Cyber Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dropcast.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .left {
+      background: #0f0f1a;
+      color: #f2f2f2;
+      width: 35%;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid #1a1a2f;
+    }
+
+    .left .site__label {
+      color: #ff6a00;
+      font-weight: bold;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+    }
+
+    .left .site__title {
+      font-size: 2.2rem;
+      margin: 18px 0 10px;
+    }
+
+    .left .site__description {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    .right {
+      background: #ffffff;
+      flex-grow: 1;
+      padding: 50px 60px;
+      overflow-y: auto;
+    }
+
+    .upload-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 16px 20px;
+      border-radius: 12px;
+      max-width: 600px;
+    }
+
+    input[type="file"] {
+      flex-grow: 1;
+      font-size: 1rem;
+      border: none;
+      background: transparent;
+      color: #333;
+    }
+
+    .analyze-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .analyze-button:hover {
+      background-color: #0056b3;
+    }
+
+    .loading-bar {
+      background-color: #111;
+      color: #00ff9f;
+      padding: 18px 24px;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #222;
+      max-width: 500px;
+      margin-top: 30px;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.85; }
+      100% { opacity: 1; }
+    }
+
+    .result-box {
+      background-color: #f7f7f7;
+      border: 1px solid #ccc;
+      padding: 30px;
+      margin-top: 30px;
+      border-radius: 14px;
+      max-width: 600px;
+    }
+
+    .success-icon {
+      color: #00c853;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .result-button {
+      background-color: #007bff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .result-button:hover {
+      background-color: #0056b3;
+    }
+
+    .error-message {
+      color: #ff5252;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    nav {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    nav .logo img {
+      width: 140px;
+    }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <div class="logo nav__logo">
+      <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.svg') }}" alt="logo"></a>
+    </div>
+    <label class="site__label">AUTO ANALYSIS</label>
+    <h1 class="site__title">Upload Threat Report</h1>
+    <p class="site__description">Drop your PDF below and generate automated cyber threat intelligence from the report.</p>
+  </div>
+
+  <div class="right">
+    <form id="uploadForm" method="POST" action="/analyze" enctype="multipart/form-data">
+      <div class="upload-container">
+        <input type="file" id="fileInput" name="file" accept="application/pdf" required>
+        <button type="submit" class="analyze-button">🚀 Analyze</button>
+      </div>
+    </form>
+
+    <div id="errorBox" class="error-message"></div>
+
+    <!-- Loading -->
+    <div id="loadingBar" class="loading-bar" style="display: none;">
+      <pre><code>&gt; Analyzing PDF... █████▒▒▒▒▒▒▒▒▒▒▒▒</code></pre>
+    </div>
+
+    <!-- Success Result -->
+    <div id="results" class="result-box" style="display: none;">
+      <div class="success-icon">✅ Analysis Complete!</div>
+      <div class="button-row">
+        <a href="/visuals" class="result-button">📊 Go to Visualizations</a>
+        <a href="/ttps" class="result-button">🧬 Go to TTPs & Malware</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById('fileInput');
+      const errorBox = document.getElementById('errorBox');
+      const loadingBar = document.getElementById('loadingBar');
+      const resultsDiv = document.getElementById('results');
+
+      errorBox.textContent = '';
+      loadingBar.style.display = 'none';
+      resultsDiv.style.display = 'none';
+
+      if (!fileInput.files[0]) {
+        errorBox.textContent = '⚠️ Please select a PDF file.';
+        return;
+      }
+
+      const formData = new FormData(this);
+      loadingBar.style.display = 'block';
+
+      try {
+        const res = await fetch('/analyze', {
+          method: 'POST',
+          body: formData
+        });
+
+        loadingBar.style.display = 'none';
+
+        if (!res.ok) {
+          const err = await res.json();
+          errorBox.textContent = `❌ Error: ${err.error || 'Unknown error occurred.'}`;
+          return;
+        }
+
+        resultsDiv.style.display = 'block';
+
+      } catch (err) {
+        loadingBar.style.display = 'none';
+        errorBox.textContent = "⚠️ Could not process the file. Check server logs.";
+      }
+    });
+  </script>
+</body>
+</html>

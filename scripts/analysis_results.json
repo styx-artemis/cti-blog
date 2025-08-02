@@ -1,0 +1,169 @@
+{
+  "malware": [
+    {
+      "name": "Revenge rat",
+      "ttps": [
+        "T1033 \u2013 System Owner/User Discovery",
+        "T1056.001 \u2013 Keylogging",
+        "T1105 \u2013 Ingress Tool Transfer",
+        "T1003 \u2013 OS Credential Dumping",
+        "T1125 \u2013 Video Capture",
+        "T1021.001 \u2013 Remote Desktop Protocol",
+        "T1082 \u2013 System Information Discovery",
+        "T1132.001 \u2013 Standard Encoding",
+        "T1102.002 \u2013 Bidirectional Communication",
+        "T1016 \u2013 System Network Configuration Discovery",
+        "T1218.005 \u2013 Mshta",
+        "T1547.004 \u2013 Winlogon Helper DLL",
+        "T1123 \u2013 Audio Capture",
+        "T1059.003 \u2013 Windows Command Shell",
+        "T1059.001 \u2013 PowerShell",
+        "T1202 \u2013 Indirect Command Execution",
+        "T1113 \u2013 Screen Capture",
+        "T1053.005 \u2013 Scheduled Task"
+      ]
+    },
+    {
+      "name": "Netwire",
+      "ttps": [
+        "T1090 \u2013 Proxy",
+        "T1547.001 \u2013 Registry Run Keys / Startup Folder",
+        "T1027.002 \u2013 Software Packing",
+        "T1573.001 \u2013 Symmetric Cryptography",
+        "T1560.003 \u2013 Archive via Custom Method",
+        "T1204.002 \u2013 Malicious File",
+        "T1204.001 \u2013 Malicious Link",
+        "T1119 \u2013 Automated Collection",
+        "T1547.013 \u2013 XDG Autostart Entries",
+        "T1059.005 \u2013 Visual Basic",
+        "T1027 \u2013 Obfuscated Files or Information",
+        "T1059.001 \u2013 PowerShell",
+        "T1055 \u2013 Process Injection",
+        "T1053.003 \u2013 Cron",
+        "T1027.011 \u2013 Fileless Storage",
+        "T1083 \u2013 File and Directory Discovery",
+        "T1057 \u2013 Process Discovery",
+        "T1059.004 \u2013 Unix Shell",
+        "T1049 \u2013 System Network Connections Discovery",
+        "T1560 \u2013 Archive Collected Data",
+        "T1555.003 \u2013 Credentials from Web Browsers",
+        "T1566.002 \u2013 Spearphishing Link",
+        "T1555 \u2013 Credentials from Password Stores",
+        "T1036.005 \u2013 Match Legitimate Resource Name or Location",
+        "T1102 \u2013 Web Service",
+        "T1564.001 \u2013 Hidden Files and Directories",
+        "T1010 \u2013 Application Window Discovery",
+        "T1059.003 \u2013 Windows Command Shell",
+        "T1036.001 \u2013 Invalid Code Signature",
+        "T1056.001 \u2013 Keylogging",
+        "T1106 \u2013 Native API",
+        "T1053.005 \u2013 Scheduled Task",
+        "T1113 \u2013 Screen Capture",
+        "T1547.015 \u2013 Login Items",
+        "T1016 \u2013 System Network Configuration Discovery",
+        "T1071.001 \u2013 Web Protocols",
+        "T1055.012 \u2013 Process Hollowing",
+        "T1112 \u2013 Modify Registry",
+        "T1082 \u2013 System Information Discovery",
+        "T1566.001 \u2013 Spearphishing Attachment",
+        "T1074.001 \u2013 Local Data Staging",
+        "T1095 \u2013 Non-Application Layer Protocol",
+        "T1573 \u2013 Encrypted Channel",
+        "T1543.001 \u2013 Launch Agent",
+        "T1105 \u2013 Ingress Tool Transfer"
+      ]
+    },
+    {
+      "name": "Ps1",
+      "ttps": [
+        "T1105 \u2013 Ingress Tool Transfer",
+        "T1055.001 \u2013 Dynamic-link Library Injection",
+        "T1059.001 \u2013 PowerShell",
+        "T1027.013 \u2013 Encrypted/Encoded File",
+        "T1140 \u2013 Deobfuscate/Decode Files or Information"
+      ]
+    }
+  ],
+  "report_ttps": [
+    {
+      "id": "T1053.005",
+      "description": "Scheduled Task"
+    },
+    {
+      "id": "T1047",
+      "description": "Windows Management Instrumentation"
+    },
+    {
+      "id": "T1590.002",
+      "description": "DNS"
+    },
+    {
+      "id": "T1071.004",
+      "description": "DNS"
+    },
+    {
+      "id": "T1587.001",
+      "description": "Malware"
+    },
+    {
+      "id": "T1584.003",
+      "description": "Virtual Private Server"
+    },
+    {
+      "id": "T1583.001",
+      "description": "Domains"
+    },
+    {
+      "id": "T1153",
+      "description": "Source"
+    },
+    {
+      "id": "T1583.004",
+      "description": "Server"
+    },
+    {
+      "id": "T1588.001",
+      "description": "Malware"
+    },
+    {
+      "id": "T1583.003",
+      "description": "Virtual Private Server"
+    },
+    {
+      "id": "T1021.007",
+      "description": "Cloud Services"
+    },
+    {
+      "id": "T1596.004",
+      "description": "CDNs"
+    },
+    {
+      "id": "T1059.001",
+      "description": "PowerShell"
+    },
+    {
+      "id": "T1592.002",
+      "description": "Software"
+    },
+    {
+      "id": "T1059.005",
+      "description": "Visual Basic"
+    },
+    {
+      "id": "T1584.004",
+      "description": "Server"
+    },
+    {
+      "id": "T1053.002",
+      "description": "At"
+    },
+    {
+      "id": "T1086",
+      "description": "PowerShell"
+    },
+    {
+      "id": "T1584.001",
+      "description": "Domains"
+    }
+  ]
+}

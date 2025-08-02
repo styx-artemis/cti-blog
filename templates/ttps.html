@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TTPs: MITRE’d and Sorted</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dropcast.css') }}">
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rufina:400,700|Source+Sans+Pro:200,300,400,600,700" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+  <style>
+    .accordion-container {
+      margin-top: 20px;
+      animation: fadeIn 0.6s ease-in;
+    }
+    .accordion-card {
+      background-color: #1a1a2e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      color: white;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .accordion-header {
+      padding: 16px 22px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #0f0f1a;
+      font-size: 1.1rem;
+      font-family: 'Rufina', serif;
+    }
+    .accordion-header:hover {
+      background-color: #f60;
+      color: black;
+    }
+    .accordion-content {
+      display: none;
+      padding: 14px 24px;
+      background-color: #24243e;
+    }
+    .accordion-card.open .accordion-content {
+      display: block;
+      animation: fadeInTab 0.3s ease-in-out;
+    }
+    .accordion-icon {
+      transition: transform 0.3s ease;
+    }
+    .accordion-card.open .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+      font-family: 'Rufina', serif;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInTab {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .right .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: fadeIn 1s ease;
+    }
+  </style>
+</head>
+
+<body class="page--detail">
+  <nav>
+    <div class="logo nav__logo">
+      <a href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="logo">
+      </a>
+    </div>
+    <ul class="nav__list">
+      <li class="nav__item"><a href="{{ url_for('index') }}">Home</a></li>
+    </ul>
+  </nav>
+
+  <section class="site">
+    <div id="site__bg"></div>
+
+    <div class="left">
+      <label class="site__label">Overview</label>
+      <h1 class="site__title site__title--separator">TTPs: MITRE’d and Sorted</h1>
+    </div>
+
+    <div class="right">
+      <div class="content-wrapper">
+        <h4 class="site__secondary_title">Extracted Data</h4>
+        <p class="site__description"><i>Malware and associated MITRE ATT&CK techniques from the uploaded threat report.</i></p>
+
+        <div class="accordion-container">
+          {% for entry in malware %}
+          <div class="accordion-card">
+            <div class="accordion-header" onclick="toggleAccordion(this)" role="button" aria-expanded="false">
+              <span>{{ entry.name }}</span>
+              <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+            <div class="accordion-content">
+              {% if entry.ttps %}
+              <ul>
+                {% for ttp in entry.ttps %}
+                <li>{{ ttp }}</li>
+                {% endfor %}
+              </ul>
+              {% else %}
+              <p><i>No TTPs found for this malware.</i></p>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleAccordion(header) {
+      const card = header.parentElement;
+      const expanded = card.classList.toggle('open');
+      header.setAttribute('aria-expanded', expanded);
+    }
+  </script>
+
+  <script src="{{ url_for('static', filename='js/dropcast.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/player.js') }}"></script>
+</body>
+</html>

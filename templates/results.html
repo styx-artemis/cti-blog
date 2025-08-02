@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CTI Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tabs {
+      display: flex;
+      background-color: #1f1f1f;
+      padding: 10px;
+      justify-content: center;
+    }
+
+    .tabs button {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tabs button.active {
+      border-bottom: 2px solid limegreen;
+    }
+
+    .content {
+      display: none;
+      padding: 0;
+    }
+
+    .content.active {
+      display: block;
+      width: 100%;
+      height: 90vh;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tabs">
+    <button class="tab-button active" data-target="timeline">🕒 TTP Timeline</button>
+    <button class="tab-button" data-target="heatmap">🔥 TTP Heatmap</button>
+    <button class="tab-button" data-target="graph">🧠 Malware-TTP Graph</button>
+    <button class="tab-button" data-target="matrix">🗺️ ATT&CK Matrix</button>
+  </div>
+
+  <div id="timeline" class="content active">
+    <iframe src="/static/timeline.html"></iframe>
+  </div>
+  <div id="heatmap" class="content">
+    <iframe src="/static/heatmap.html"></iframe>
+  </div>
+  <div id="graph" class="content">
+    <iframe src="/static/malware_ttp_graph.html"></iframe>
+  </div>
+  <div id="matrix" class="content">
+    <iframe src="/static/matrix.html"></iframe>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".tab-button");
+    const contents = document.querySelectorAll(".content");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(button.dataset.target).classList.add("active");
+      });
+    });
+  </script>
+
+</body>
+</html>

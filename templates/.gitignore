@@ -1,0 +1,27 @@
+# Virtual environment
+myenv310/
+.venv/
+__pycache__/
+
+
+# Replit/deployment-specific files
+.replit
+.config/
+
+# Logs and cache
+*.log
+*.json  # This is important if you save results to a JSON file
+
+# Python dependencies and build artifacts
+build/
+dist/
+*.egg-info/
+
+# Hugging Face model cache (downloaded at runtime)
+scibert_model_cache/
+
+# Visualisation outputs
+static/*.html
+
+# Render deployment artifacts
+.render/
